@@ -24,7 +24,7 @@ Now lets access your variables
 env.getenv("Foo");
 env["Foo"];
 
-// Or use std::getenv -> Allows for environment variables to be used across files
+// Or use std::getenv || READ NEXT SECTION!!!
 std::getenv("Foo");
 
 // To maintain type conversions, the getenv method in dotenv is static :D
