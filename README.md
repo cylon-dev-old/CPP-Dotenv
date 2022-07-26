@@ -20,12 +20,15 @@ auto& env = dotenv::dotenv::load_dotenv();   // Intialise the class once and you
 
 Now lets access your variables
 ```cpp
-# Using the intialised class
+// Using the intialised class
 env.getenv("Foo");
 env["Foo"];
 
-# Or use std::getenv -> Allows for environment variables to be used across files
+// Or use std::getenv -> Allows for environment variables to be used across files
 std::getenv("Foo");
+
+// To maintain type conversions, the getenv method in dotenv is static :D
+dotenv::dotenv::get_env("Foo");
 ```
 
 ### Variable assigning and handling
@@ -33,5 +36,33 @@ std::getenv("Foo");
 * **Strings**: type[std::string] : `VAR = "String # Here"` -> `getenv("VAR") == "String # Here"`
 * **Integers**: type[int] : `VAR = 10` -> `getenv("VAR") == 10`
 * **Floats**: type[double] : `VAR = 0.1` -> `getenv("VAR") == 0.1`
-* **Booleans** type[bool] : `VAR = true` -> `getenv("VAR") == true`
+* **Booleans** type[bool] : `VAR = true` -> `getenv("VAR") == true`   | Case insensitive
 * **NULL** type[NULL] : `VAR =` -> `getenv("VAR") == NULL`
+
+> ⚠️ Variable types will only be handled if your using `dotenv::dotenv::getenv`
+You will only get handled types by using the classes getenv method.
+
+The regular `std::getenv` will return all vars with the type `char*`
+
+* Strings will be fetched with quotations wrapped around
+* int, float and bool will all remain the same `char* var = "10" "0.1" "true"`
+* NULL will be equal to `char* var = "01a"`
+
+### Adding new variables
+```cpp
+// Using the class :: Works statically as well :O
+env::setenv(NAME, VAR);
+
+// Standard function will also work, You just wont get any verification before its added
+setenv(NAME, VAR);
+```
+
+### Deleting variables
+COMING SOON
+
+### Editing existing variables
+COMING SOON
+
+### Clearing environment
+COMING SOON
+
