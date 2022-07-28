@@ -221,8 +221,28 @@ namespace dotenv {
             }
 
             static envItem getenv(std::string key, bool process = true) {
-                std::string value = _getenv(const_cast<char*>(key.c_str()));
-                return envItem::create(value, process);
+                try {
+                    std::string value = _getenv(const_cast<char*>(key.c_str()));
+                    return envItem::create(value, process);
+                }
+                // NULL returned = KEY dont exist
+                catch (std::logic_error _) {
+                    return envItem::create("01a", true);
+                }
+            }
+
+            static bool delvar(std::string key) {
+                if (_setenv(const_cast<char*>(key.c_str()), NULL, 1) != 0) {
+                    return false;
+                }
+                return true;
+            }
+
+            static bool clearenv() {
+                if (clearenv() != 0) {
+                    return false;
+                }
+                return true;
             }
 
         private:
