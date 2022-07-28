@@ -33,6 +33,7 @@ dotenv::dotenv::get_env("Foo");
 
 ### Variable assigning and handling
 *NOTE: Results returned will be of the envItem class, for parsed items use the .parse method!*
+
 *NOTE: Since return type is a varient, using std::get<TYPE>(getenv("VAR").parse()) may help*
 
 * **Comments**: Defined by using `#` (Ignored if in quotations)
