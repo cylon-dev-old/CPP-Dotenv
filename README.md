@@ -62,16 +62,40 @@ setenv(NAME, VAR);
 ```
 
 ### Deleting variables
-COMING SOON
+```cpp
+// Using class :: Works statically
+env::delvar(VAR);
+
+// Standard
+setenv(VAR, NULL, 1);
+```
 
 ### Editing existing variables
-COMING SOON
+```cpp
+// Using class
+env::setenv(VAR, VALUE, true);
+
+// Standard
+setenv(VAR, VALUE, FLAG);
+```
 
 ### Clearing environment
-COMING SOON
+```cpp
+// Using class
+env::clearenv();
+
+// Standard
+clearenv();
+```
 
 ## Error Reporting
-...
+This little file can also return errors and warnings whilst dealing with setting your environment.
+```
+EINVAL - Raised name is NULL (empty) or is pointing to a string with `=` in it
+ENOMEM - Raised when there is insufficient memory available
+```
+
+For any other errors that may lurk, they will also be raised with only the context of the error.
 
 ## Signitures
 **dotenv::dotenv::load_dotenv**
