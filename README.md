@@ -70,7 +70,7 @@ COMING SOON
 ...
 
 ## Signitures
-**dotenv::dotenv::load_dotenv
+**dotenv::dotenv::load_dotenv**
 ```cpp
 static dotenv load_dotenv(
     std::string dotenv_path = "./.env",           // path to .env file
