@@ -32,6 +32,8 @@ dotenv::dotenv::get_env("Foo");
 ```
 
 ### Variable assigning and handling
+*NOTE: Results returned will be of the envItem class, for parsed items use the .parse method!*
+
 * **Comments**: Defined by using `#` (Ignored if in quotations)
 * **Strings**: type[std::string] : `VAR = "String # Here"` -> `getenv("VAR") == "String # Here"`
 * **Integers**: type[int] : `VAR = 10` -> `getenv("VAR") == 10`
