@@ -224,10 +224,10 @@ namespace dotenv {
                 this->overwrite = o_;
             }
 
-            static envItem getenv(std::string key, bool process = true) {
+            static envItem getenv(std::string key, bool can_be_parsed = true) {
                 try {
                     std::string value = _getenv(const_cast<char*>(key.c_str()));
-                    return envItem::create(value, process);
+                    return envItem::create(value, can_be_parsed);
                 }
                 // NULL returned = KEY dont exist
                 catch (std::logic_error _) {
