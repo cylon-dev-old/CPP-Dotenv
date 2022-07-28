@@ -97,7 +97,30 @@ ENOMEM - Raised when there is insufficient memory available
 
 For any other errors that may lurk, they will also be raised with only the context of the error.
 
-## Signitures
+## Signatures
+
+### envItem [dotenv::envItem]
+```cpp
+// Attributes
+envItem.item        // Raw item before any parsing
+envItem.can_parse   // Whether the item can be parsed
+```
+
+**dotenv::envItem::create**
+```cpp
+static envItem create(
+    std::string item, 
+    bool can_parse
+);
+```
+
+**dotenv::envItem::parse**
+```cpp
+std::variant<int, double, bool, std::string, long int> parse();
+```
+
+### dotenv [dotenv::dotenv]
+
 **dotenv::dotenv::load_dotenv**
 ```cpp
 static dotenv load_dotenv(
@@ -111,4 +134,41 @@ static dotenv load_dotenv(
     bool throw_err = false,                       // whether to throw errors which can be critical - .env file can't opened
     bool warn_on_set_err = true                   // whether to disable error tracking
 );
+```
+
+**dotenv::dotenv::parse_env**
+```cpp
+void parse_env();
+```
+
+**dotenv::dotenv::load_variables**
+```cpp
+void load_variables();
+```
+
+**dotenv::dotenv::setenv**
+```cpp
+void setenv(
+    std::string key, 
+    std::string value, 
+    bool __overwrite = false
+);
+```
+
+**dotenv::dotenv::getenv**
+```cpp
+static envItem getenv(
+    std::string key,               // Item to fetch
+    bool can_be_parsed = true     // Whether fetched item can be parsed
+);
+```
+
+**dotenv::dotenv::delvar**
+```cpp
+static bool delvar(std::string key);
+```
+
+**dotenv::dotenv::clearenv**
+```cpp
+static bool clearenv();
 ```
