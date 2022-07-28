@@ -33,12 +33,13 @@ dotenv::dotenv::get_env("Foo");
 
 ### Variable assigning and handling
 *NOTE: Results returned will be of the envItem class, for parsed items use the .parse method!*
+*NOTE: Since return type is a varient, using std::get<TYPE>(getenv("VAR").parse()) may help*
 
 * **Comments**: Defined by using `#` (Ignored if in quotations)
-* **Strings**: type[std::string] : `VAR = "String # Here"` -> `getenv("VAR") == "String # Here"`
-* **Integers**: type[int] : `VAR = 10` -> `getenv("VAR") == 10`
-* **Floats**: type[double] : `VAR = 0.1` -> `getenv("VAR") == 0.1`
-* **Booleans** type[bool] : `VAR = true` -> `getenv("VAR") == true`   | Case insensitive
+* **Strings**: type[std::string] : `VAR = "String # Here"` -> `getenv("VAR").item == "String # Here"`
+* **Integers**: type[int] : `VAR = 10` -> `getenv("VAR").item == 10`
+* **Floats**: type[double] : `VAR = 0.1` -> `getenv("VAR").item == 0.1`
+* **Booleans** type[bool] : `VAR = true` -> `getenv("VAR").item == true`   | Case insensitive
 * **NULL** type[NULL] : `VAR =` -> `getenv("VAR") == NULL`
 
 > ⚠️ Variable types will only be handled if your using `dotenv::dotenv::getenv`
