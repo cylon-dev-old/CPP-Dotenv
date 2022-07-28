@@ -15,7 +15,7 @@ Using the module has never been easier.
 ```cpp
 #include "dotenv.hpp"   // Include the header file
 
-auto& env = dotenv::dotenv::load_dotenv();   // Intialise the class once and your ready to go
+auto env = dotenv::dotenv::load_dotenv();   // Intialise the class once and your ready to go
 ```
 
 Now lets access your variables
@@ -66,3 +66,21 @@ COMING SOON
 ### Clearing environment
 COMING SOON
 
+## Error Reporting
+...
+
+## Signitures
+**dotenv::dotenv::load_dotenv
+```cpp
+static dotenv load_dotenv(
+    std::string dotenv_path = "./.env",           // path to .env file
+    std::map<std::string, std::string> vars = {}, // additional variables that are not found in .env
+                                                  // - Will overwrite any variables from the .env file
+    bool overwrite = false,                       // whether to overwrite exisiting enviroment variables
+    bool ignore_whitespace = true,                // whether to ignore lines that just contain whitespace
+    bool warn_on_overwrite = true,                // whether to warn before overwriting variable
+    bool warn_on_error = true,                    // whether to warn when an error occurs through parsing
+    bool throw_err = false,                       // whether to throw errors which can be critical - .env file can't opened
+    bool warn_on_set_err = true                   // whether to disable error tracking
+);
+```
