@@ -215,9 +215,13 @@ namespace dotenv {
                 to_load.clear();
             }
 
-            void setenv(std::string key, std::string value) {
+            void setenv(std::string key, std::string value, bool __overwrite = false) {
+                bool o_ = overwrite;
+                this->overwrite = __overwrite;
+
                 to_load[key] = value;
                 load_variables();
+                this->overwrite = o_;
             }
 
             static envItem getenv(std::string key, bool process = true) {
