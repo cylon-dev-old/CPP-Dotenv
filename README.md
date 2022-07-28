@@ -34,14 +34,14 @@ dotenv::dotenv::get_env("Foo");
 ### Variable assigning and handling
 *NOTE: Results returned will be of the envItem class, for parsed items use the .parse method!*
 
-*NOTE: Since return type is a varient, using std::get<TYPE>(getenv("VAR").parse()) may help*
+*NOTE: Since return type is a varient, using `std::get<TYPE>(getenv("VAR").parse())` may help*
 
 * **Comments**: Defined by using `#` (Ignored if in quotations)
-* **Strings**: type[std::string] : `VAR = "String # Here"` -> `getenv("VAR").item == "String # Here"`
-* **Integers**: type[int] : `VAR = 10` -> `getenv("VAR").item == 10`
-* **Floats**: type[double] : `VAR = 0.1` -> `getenv("VAR").item == 0.1`
-* **Booleans** type[bool] : `VAR = true` -> `getenv("VAR").item == true`   | Case insensitive
-* **NULL** type[NULL] : `VAR =` -> `getenv("VAR") == NULL`
+* **Strings**: type[std::string] : `VAR = "String # Here"` -> `std::get<std::string>(getenv("VAR").parse()) == "String # Here"`
+* **Integers**: type[int] : `VAR = 10` -> `std::get<int>(getenv("VAR").parse()) == 10`
+* **Floats**: type[double] : `VAR = 0.1` -> `std::get<double>(getenv("VAR").parse()) == 0.1`
+* **Booleans** type[bool] : `VAR = true` -> `getenv(std::get<bool>(getenv("VAR").parse())).item == true` | [true or false]
+* **NULL** type[NULL] : `VAR =` -> `std::get<long int>(getenv("VAR").parse()) == NULL`
 
 > ⚠️ Variable types will only be handled if your using `dotenv::dotenv::getenv`
 You will only get handled types by using the classes getenv method.
