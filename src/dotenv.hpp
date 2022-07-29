@@ -6,7 +6,6 @@ Maintainer: Seniatical @Seniatical
 */
 #ifndef DOT_ENV_H
 #define DOT_ENV_H
-
 #include <iostream>
 #include <stdlib.h>
 #include <map>
@@ -14,6 +13,7 @@ Maintainer: Seniatical @Seniatical
 #include <string>
 #include <regex>
 #include <variant>
+#include <any>
 
 #include <stdexcept>
 #include <cerrno>
@@ -68,16 +68,23 @@ namespace dotenv {
         return true;
     }
 
-    /* RESULT CLASS */
+    /* RESULT CLASS Definition */
+
     class envItem {
         public:
             std::string item;
             bool can_parse;
+            std::string k_name;
 
-            static envItem create(std::string item, bool can_parse) {
+            static envItem create(
+                std::string item, 
+                bool can_parse, 
+                std::string k_name = ""
+            ) {
                 envItem itemWrapper;
                 itemWrapper.item = item;
                 itemWrapper.can_parse = can_parse;
+                itemWrapper.k_name = k_name;
 
                 return itemWrapper;
             }
@@ -110,6 +117,7 @@ namespace dotenv {
             bool warn_on_error = true;
             bool throw_err = false;
             bool warn_on_set_err = true;
+            bool warn_not_found = true;
 
             static dotenv load_dotenv(
                 std::string dotenv_path = "./.env",
@@ -231,7 +239,9 @@ namespace dotenv {
                 }
                 // NULL returned = KEY dont exist
                 catch (std::logic_error _) {
-                    return envItem::create("01a", true);
+                    std::cerr << "Key '" << key << "' Not found, returning NULL value" << std::endl; 
+
+                    return envItem::create("01a", true, key);
                 }
             }
 
@@ -249,9 +259,15 @@ namespace dotenv {
                 return true;
             }
 
+            /* OPERATORS */
+            const envItem operator[](const std::string key) {
+                return getenv(key, true);
+            }
+
         private:
             std::map<std::string, std::string> to_load;
     };
+
 }
 
 #endif
