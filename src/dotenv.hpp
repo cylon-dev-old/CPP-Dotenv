@@ -4,8 +4,10 @@ Dotenv.hpp - A small utility module for working with enviroment variables
 Creator: Seniatical @Seniatical -> cylon.wtf
 Maintainer: Seniatical @Seniatical
 */
+
 #ifndef DOT_ENV_H
 #define DOT_ENV_H
+
 #include <iostream>
 #include <stdlib.h>
 #include <map>
@@ -13,7 +15,6 @@ Maintainer: Seniatical @Seniatical
 #include <string>
 #include <regex>
 #include <variant>
-#include <any>
 
 #include <stdexcept>
 #include <cerrno>
@@ -271,3 +272,4 @@ namespace dotenv {
 }
 
 #endif
+
