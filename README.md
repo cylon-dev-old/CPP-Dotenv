@@ -5,7 +5,7 @@ A small module for working with .env files in CPP.
 Simply shove the header file were it is needed and code right away, it is that simple.
 
 ```sh
-curl https://github.com/cylon-dev/CPP-Dotenv/src/dotenv.hpp -o dotenv.hpp
+curl https://raw.githubusercontent.com/cylon-dev/CPP-Dotenv/main/src/dotenv.hpp -o dotenv.hpp
 ```
 
 ## Usage
